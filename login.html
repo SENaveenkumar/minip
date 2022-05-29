@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login html</title>
+</head>
+<body style="text-align: center;">
+    <div>
+        <form >
+            <h1>Login</h1>
+            Username:<input type="text" id="user" name="log"><br><br>
+            password:<input type="password" id="pwd" name="logpd">
+            <p>Not yet create your account !! <a href="./signup.html">Sign Up</a></p>
+            <input type="submit" onclick="login()">
+        </form>
+    </div>
+</body>
+<script>
+    function login(){
+
+    var a=document.getElementById("user").value;
+    var b=document.getElementById("pwd").value;
+    if(a==""||b==""){
+        alert("All fields are required");
+        return false;
+    }
+}
+</script>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign up</title>
+</head>
+<body style="text-align: center;">
+    <h1>Sign up</h1>
+    <fieldset>
+    <form name="myform2">
+
+        Name: <br> <input type="text" id="name2" name="name2"><br><br>
+        Username: <br> <input type="text" name="usn" id="usn1"><br><br>
+        Enter password: <br> <input type="password" name="pwd" id="pwd2"><br><br>
+        conform password: <br> <input type="password" name="pwd" id="pwd3"><br><br>
+
+        mail_id: <br> <input type="email" name="mail2" id="mail"><br><br>
+        <p>Please select the option below</p>
+        <input type="radio" id="r1" name="radio2"> Student
+        <input type="radio" id="r2" name="radio2"> Teacher <br><br>
+
+        <input type="submit" name="submit2" id="sub2" onclick="signup()">
+        
+
+    </form>
+</fieldset>
+    <script>
+        function signup(){
+   
+            var a = document.getElementById("name2").value;
+            var b = document.getElementById("mail").value;
+            var c = document.getElementById("usn1").value;
+            var d = document.getElementsByName("radio2").value;
+            var p1=document.getElementById("pwd2").value;
+            var p2=document.getElementById("pwd3").value;
+            if(a==""||b==""||c==""||d==""||p1==""||p2==""){
+                alert("All feilds are required");
+                return false;
+            }
+            if(p1==p2){
+                alert("Password doesnt match..!!")
+            }
+        }
+    </script>
+</body>
+</html>

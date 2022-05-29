@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission</title>
+</head>
+<body style="text-align: center;">
+    <h1>Fill the admission form to get admission</h1>
+    <fieldset><form action="localhost" method="post">
+        Name: <br> <input type="text" name="name1" id="nam1"> <br><br>
+        Father's name: <br> <input type="text" name="fname" id="fname1"> <br><br>
+        SLLC percent: <br> <input type="number" name="sslc" id="sslc1">% <br><br>
+        HSC percent: <br> <input type="number" name="hsc" id="hsc1">% <br><br>
+        Select the option given below:<br><br>
+        <input type="radio" name="dh" id="dh1"> Hostel  <br>
+        <input type="radio" name="dh" id="dh2"> Dayscholar <br><br>
+        Select the course: <br><br>
+        <input type="radio" name="course" id="c1">IT <br>
+        <input type="radio" name="course" id="c1">CSE <br>
+        <input type="radio" name="course" id="c1">MECH <br>
+        <input type="radio" name="course" id="c1">CIVIL <br><br>
+
+        <input type="submit" onclick="admission()">
+    </form>
+</fieldset>
+</body>
+<script>
+    function admission(){
+        var a0=document.getElementById("nam1").value;
+        var b0=document.getElementById("fname1").value;
+        var c0=document.getElementById("sslc1").value;
+        var d0=document.getElementById("hsc1").value;
+        var dh=document.getElementsByName("dh").value;
+        var course=document.getElementsByName("course").value;
+
+        if(a0==""||b0==""||c0==""||d0==""||dh==""||course==""){
+            alert("All fields are required");
+            return false;
+        }
+    }
+</script>
+</html>
