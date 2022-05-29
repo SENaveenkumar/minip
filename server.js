@@ -1,30 +1,38 @@
-var mysql = require('mysql');
-const express=require('express');
-const app=express();
+const mysql = require("mysql");
+const express = require("express");
+const bodyParser = require("body-parser");
 
+var con = mysql.createConnection({
+  host: "localhost",
+  user: "root",
+  password: "",
+  database: "minip",
+});
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+const app = express();
 
+app.use(bodyParser.json());
 
-// var con = mysql.createConnection({
-//   host: "localhost",
-//   user: "root",
-//   password: "",
-//   database:"minip"
-// });
+app.use(express.static("client"));
 
-// con.connect(function(err) {
-//     if (err) throw err;
-//     console.log("Connected!");
-//     var sql = "CREATE TABLE customers (name VARCHAR(255), address VARCHAR(255))";
-//     con.query(sql, function (err, result) {
-//       if (err) throw err;
-//       console.log("Table created");
-//     });
-//   });
+app.get("/test", (req, res) => {
+  res.send("Hello World!");
+});
 
-  app.listen(9000, () => {
-    console.log("Server Started Successfully");
-  })
+app.post("/api/student", (req, res) => {
+  console.log(req.body);
+  con.connect(function (err) {
+    if (err) throw err;
+    var sql = `INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+      VALUES ('Cardinal', 'Tom B. Erichsen', 'Skagen 21', 'Stavanger', '4006', 'Norway')`;
+
+    con.query(sql, function (err, result) {
+      if (err) throw err;
+      res.json(result);
+    });
+  });
+});
+
+app.listen(9000, () => {
+  console.log("Server Started Successfully");
+});
