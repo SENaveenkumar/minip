@@ -19,13 +19,13 @@
         HSC percent: <br />
         <input type="number" name="hsc" id="hsc1" />% <br /><br />
         Select the option given below:<br /><br />
-        <input type="radio" name="dh" id="dh1" /> Hostel <br />
-        <input type="radio" name="dh" id="dh2" /> Dayscholar <br /><br />
+        <input type="radio" name="dh" id="dh1" value="Hostel"/> Hostel <br />
+        <input type="radio" name="dh" id="dh2" value="Dayscholar" /> Dayscholar <br /><br />
         Select the course: <br /><br />
-        <input type="radio" name="course" id="c1" />IT <br />
-        <input type="radio" name="course" id="c1" />CSE <br />
-        <input type="radio" name="course" id="c1" />MECH <br />
-        <input type="radio" name="course" id="c1" />CIVIL <br /><br />
+        <input type="radio" name="course" id="c1" value="IT" />IT <br />
+        <input type="radio" name="course" id="c1" value="CSE"/>CSE <br />
+        <input type="radio" name="course" id="c1" value="MECH"/>MECH <br />
+        <input type="radio" name="course" id="c1" value="CIVIL"/>CIVIL <br /><br />
 
         <input type="submit" />
       </form>
@@ -38,26 +38,32 @@
     function createStudent(event) {
       event.preventDefault();
       var a0 = document.getElementById("nam1").value;
-      //   var b0 = document.getElementById("fname1").value;
-      //   var c0 = document.getElementById("sslc1").value;
-      //   var d0 = document.getElementById("hsc1").value;
-      //   var dh = document.getElementsByName("dh").value;
-      //   var course = document.getElementsByName("course").value;
+        var b0 = document.getElementById("fname1").value;
+        var c0 = document.getElementById("sslc1").value;
+        var d0 = document.getElementById("hsc1").value;
+        var dh = form.elements["dh"].value;
+        var course = form.elements["course"].value;
 
-      //   if (
-      //     a0 == "" ||
-      //     b0 == "" ||
-      //     c0 == "" ||
-      //     d0 == "" ||
-      //     dh == "" ||
-      //     course == ""
-      //   ) {
-      //     alert("All fields are required");
-      //     return false;
-      //   }
+        if (
+          a0 == "" ||
+          b0 == "" ||
+          c0 == "" ||
+          d0 == "" ||
+          dh == "" ||
+          course == ""
+        ) {
+          alert("All fields are required");
+          return false;
+        }
 
       const req = {
         name: a0,
+        fname: b0,
+        sslc: c0,
+        hsc: d0,
+        am:dh,
+        course:course,
+        pre_count:0
       };
 
       fetch("/api/student", {

@@ -9,7 +9,7 @@
 <body style="text-align: center;">
     <h1>Sign up</h1>
     <fieldset>
-    <form name="myform2">
+    <form id="myform2" method="post">
 
         Name: <br> <input type="text" id="name2" name="name2"><br><br>
         Username: <br> <input type="text" name="usn" id="usn1"><br><br>
@@ -18,30 +18,60 @@
 
         mail_id: <br> <input type="email" name="mail2" id="mail"><br><br>
         <p>Please select the option below</p>
-        <input type="radio" id="r1" name="radio2"> Student
-        <input type="radio" id="r2" name="radio2"> Teacher <br><br>
+        <input type="radio" id="r1" name="radio2" value="Student"> Student
+        <input type="radio" id="r2" name="radio2" value="Teacher"> Teacher <br><br>
 
-        <input type="submit" name="submit2" id="sub2" onclick="signup()">
+        <input type="submit" >
         
 
     </form>
 </fieldset>
     <script>
-        function signup(){
-   
+           const form = document.getElementById("myform2");
+    form.addEventListener("submit", signUp);
+    function signUp(event){
+            event.preventDefault();
             var a = document.getElementById("name2").value;
             var b = document.getElementById("mail").value;
             var c = document.getElementById("usn1").value;
-            var d = document.getElementsByName("radio2").value;
+            var d = form.elements["radio2"].value;
             var p1=document.getElementById("pwd2").value;
             var p2=document.getElementById("pwd3").value;
             if(a==""||b==""||c==""||d==""||p1==""||p2==""){
                 alert("All feilds are required");
                 return false;
             }
-            if(p1==p2){
+            if(p1!=p2){
                 alert("Password doesnt match..!!")
+                return false;
             }
+        
+      const req = {
+        name: a,
+        mail: b,
+        username: c,
+        designation: d,
+        pwd:p1,
+      };
+
+      fetch("/api/signup/", {
+        method: "POST",
+        body: JSON.stringify(req),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if(res.success==true){
+              alert("Account Successfully created")
+              window.location.replace("/index.html")
+          }
+          else{
+              alert("Cannot submit the form")
+          }
+        });
+         
         }
     </script>
 </body>

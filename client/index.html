@@ -1,62 +1,51 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #04AA6D;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login html</title>
 </head>
-<body>
-
-<ul>
-  <li><a href="./index.html">Home</a></li>
-  
-  <li style="float:right"><a class="active" href="./login.html">Login</a></li>
-  <li style="float: right;"><a href="./signup.html">Signup</a></li>
-  <li style="float:right"><a href="./about.html">About</a></li>
-</ul>
-
-<h1>Welcome to our College...!!</h1>
-
-<p>Fill this form to get admission in this college</p>
-
-<a href="./Admission.html">Addmission</a>
-
-<p>Attendence sheet is given below</p>
-
-<a href="./attendence.html">Attendence</a>
-
-<p>View details [only Admins]</p>
-
-<a href="./view.html">View</a>
-
-
-
-
+<body style="text-align: center;">
+    <div>
+        <form >
+            <h1>Login</h1>
+            Username:<input type="text" id="user" name="log"><br><br>
+            password:<input type="password" id="pwd" name="logpd">
+            <p>Not yet create your account !! <a href="./signup.html">Sign Up</a></p>
+            <input type="submit" onclick="login()">
+        </form>
+    </div>
 </body>
+<script>
+    function login(){
+
+    var a=document.getElementById("user").value;
+    var b=document.getElementById("pwd").value;
+    if(a==""||b==""){
+        alert("All fields are required");
+        return false;
+    }
+    const req={
+         username: a,
+         pwd:b
+    }
+    fetch("/api/login", {
+        method: "POST",
+        body: JSON.stringify(req),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          if(res.success==true){
+            window.location.replace("/main.html");
+          } 
+          else{
+            alert("Invalid credentials")
+          }
+        });
+}
+</script>
 </html>
